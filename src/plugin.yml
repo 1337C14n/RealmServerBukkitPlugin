@@ -1,0 +1,56 @@
+author: x4n4th
+database: false
+description: none
+main: Controller
+name: Controller
+loadbefore: [HungerGames, HubMiniGame, SurvivalMiniGame, SkyGridMiniGame]
+depend: [Vault, PermissionsEx]
+version: '1.0'
+commands:
+  ch:
+    description: creates a channel.
+    usage: Simply type /<command> channelName.
+  r:
+    description: responds to a message
+    usage: Simply type /<command> channelName.
+  msg:
+    description: messages a player
+    aliases: [tell, pm]
+    usage: Simply type /<command> channelName.
+  ban:
+    description: creates a channel.
+    permission: chat.mod
+    aliases: [pwn]
+    usage: Simply type /<command> playerName.
+  unban:
+    description: creates a channel.
+    permission: chat.mod
+    usage: Simply type /<command> playerName.
+  mute:
+    description: creates a channel.
+    permission: chat.mod
+    usage: Simply type /<command> playerName.
+  b:
+    description: Broadcast.
+    permission: chat.admin
+    usage: Simply type /<command> message.
+  warn:
+    description: warn a player.
+    permission: chat.mod
+    usage: Simply type /<command> playerName.
+  hub:
+    description: warn a player.
+    permission: controller.hub
+    usage: Simply type /<command> playerName.
+  ignore:
+    description: Ignores another player.
+    usage: Simply type /<command> playerName.
+  join:
+    description: Ignores another player.
+    usage: Simply type /<command> playerName.
+  Ignored:
+    description: Ignores another player.
+    usage: Simply type /<command> playerName.
+  perm:
+    description: Ignores another player.
+    usage: Simply type /<command> playerName.
