@@ -2,13 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package leetclan.plugins.Controller.commands;
+package leetclan.plugins.realmServerBukkitPlugin.commands;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import leetclan.plugins.Controller.RealmServerBukkitPlugin;
+import leetclan.plugins.realmServerBukkitPlugin.RealmServerBukkitPlugin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +19,7 @@ import org.bukkit.command.CommandSender;
  * 
  * @author x4n4th
  */
-public class ControllerCommandExecutor implements CommandExecutor {
+public class realmServerBukkitCommandExecutor implements CommandExecutor {
   static final Logger log = Logger.getLogger("Minecraft");
   RealmServerBukkitPlugin plugin;
   
@@ -42,7 +42,7 @@ public class ControllerCommandExecutor implements CommandExecutor {
     }
   };
 
-  public ControllerCommandExecutor(RealmServerBukkitPlugin instance) {
+  public realmServerBukkitCommandExecutor(RealmServerBukkitPlugin instance) {
     plugin = instance;
   }
 

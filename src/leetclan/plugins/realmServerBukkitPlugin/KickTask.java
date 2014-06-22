@@ -1,4 +1,4 @@
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

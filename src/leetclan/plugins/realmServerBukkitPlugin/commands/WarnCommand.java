@@ -1,7 +1,7 @@
-package leetclan.plugins.Controller.commands;
+package leetclan.plugins.realmServerBukkitPlugin.commands;
 
-import leetclan.plugins.Controller.RealmServerBukkitPlugin;
-import leetclan.plugins.Controller.PlayerMap;
+import leetclan.plugins.realmServerBukkitPlugin.RealmServerBukkitPlugin;
+import leetclan.plugins.realmServerBukkitPlugin.PlayerMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

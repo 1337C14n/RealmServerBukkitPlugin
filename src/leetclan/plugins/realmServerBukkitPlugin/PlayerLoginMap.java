@@ -1,4 +1,4 @@
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.util.concurrent.ConcurrentHashMap;
 

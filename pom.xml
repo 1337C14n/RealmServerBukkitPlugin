@@ -79,8 +79,8 @@
 			<version>1.7.2-R0.2</version>
 		</dependency>
 		<dependency>
-			<groupId>RealmConnector</groupId>
-			<artifactId>RealmConnector</artifactId>
+			<groupId>RealmServerConnector</groupId>
+			<artifactId>RealmServerConnector</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>

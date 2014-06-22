@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.util.ArrayList;
 import java.util.List;

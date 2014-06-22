@@ -1,7 +1,7 @@
 author: x4n4th
 database: false
 description: none
-main: leetclan.plugins.Controller.Controller
+main: leetclan.plugins.realmServerBukkitPlugin.RealmServerBukkitPlugin
 name: Controller
 loadbefore: [HungerGames, HubMiniGame, SurvivalMiniGame, SkyGridMiniGame]
 depend: [Vault, PermissionsEx]

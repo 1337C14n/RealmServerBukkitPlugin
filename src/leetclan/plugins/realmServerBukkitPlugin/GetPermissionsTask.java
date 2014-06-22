@@ -1,4 +1,4 @@
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.io.BufferedReader;
 import java.io.IOException;

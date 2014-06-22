@@ -1,4 +1,4 @@
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;

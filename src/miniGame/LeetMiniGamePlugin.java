@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import leetclan.plugins.Controller.Game;
+import leetclan.plugins.realmServerBukkitPlugin.Game;
 import minigame.MiniGameStatus;
 
 import org.bukkit.Bukkit;

@@ -1,4 +1,4 @@
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 public class Game {
   private static String gameType;

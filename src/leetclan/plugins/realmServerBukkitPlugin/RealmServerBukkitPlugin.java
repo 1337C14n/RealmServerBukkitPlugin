@@ -1,11 +1,11 @@
 /*
  * 1337Clan
  */
-package leetclan.plugins.Controller;
+package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.util.logging.Logger;
 
-import leetclan.plugins.Controller.commands.ControllerCommandExecutor;
+import leetclan.plugins.realmServerBukkitPlugin.commands.realmServerBukkitCommandExecutor;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,7 +32,7 @@ public class RealmServerBukkitPlugin extends JavaPlugin {
 
     new BukkitListener(this);
 
-    ControllerCommandExecutor myExecutor = new ControllerCommandExecutor(this);
+    realmServerBukkitCommandExecutor myExecutor = new realmServerBukkitCommandExecutor(this);
     
     getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 

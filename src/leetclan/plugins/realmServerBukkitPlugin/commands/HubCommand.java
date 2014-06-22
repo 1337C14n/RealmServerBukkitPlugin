@@ -1,6 +1,6 @@
-package leetclan.plugins.Controller.commands;
+package leetclan.plugins.realmServerBukkitPlugin.commands;
 
-import leetclan.plugins.Controller.RealmServerBukkitPlugin;
+import leetclan.plugins.realmServerBukkitPlugin.RealmServerBukkitPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
