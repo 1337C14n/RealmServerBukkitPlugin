@@ -2,8 +2,6 @@ package leetclan.plugins.realmServerBukkitPlugin.permissions;
 
 import java.util.List;
 
-import org.bukkit.Bukkit;
-import org.bukkit.World;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -28,9 +26,9 @@ public class SetPermissionTask extends BukkitRunnable{
     
     PermissionsEx.getUser(playerName).setOption("prefix", prefix);
     
-    for(World world : Bukkit.getWorlds()){
+    /*for(World world : Bukkit.getWorlds()){
       PermissionsEx.getUser(playerName).setPrefix(prefix, world.getName());
-    }
+    }*/
     
   }
 
