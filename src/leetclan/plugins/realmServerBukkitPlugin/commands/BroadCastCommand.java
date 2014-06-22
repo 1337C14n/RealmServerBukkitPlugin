@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import packets.Broadcast;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 public class BroadCastCommand extends LeetCommand{
 
@@ -30,7 +30,7 @@ public class BroadCastCommand extends LeetCommand{
       p.sendMessage("/b <message>");
       return true;
     }
-    RealmConnector.write(new Broadcast(args[0]));
+    RealmServerConnector.write(new Broadcast(args[0]));
     return true;
   }
 

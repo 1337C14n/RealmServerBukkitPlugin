@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import packets.CommandMessage;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 public class IgnoreCommand extends LeetCommand{
 
@@ -18,7 +18,7 @@ public class IgnoreCommand extends LeetCommand{
   public boolean onCommand() {
     if(args.length == 1){
       CommandMessage message = new CommandMessage(sender.getName(), "ignore", args[0]);
-      RealmConnector.write(message);
+      RealmServerConnector.write(message);
     } else {
       return false;
     }

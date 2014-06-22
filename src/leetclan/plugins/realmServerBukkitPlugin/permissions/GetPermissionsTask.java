@@ -1,4 +1,4 @@
-package leetclan.plugins.realmServerBukkitPlugin;
+package leetclan.plugins.realmServerBukkitPlugin.permissions;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,6 +7,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+
+import leetclan.plugins.realmServerBukkitPlugin.Game;
 
 import org.bukkit.plugin.Plugin;
 import org.json.JSONArray;

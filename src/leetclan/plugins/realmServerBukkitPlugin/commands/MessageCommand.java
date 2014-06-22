@@ -6,7 +6,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
 import packets.CommandMessage;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 /**
  * Handles the /msg /tell commands
@@ -22,7 +22,7 @@ public class MessageCommand extends LeetCommand{
   @Override
   public boolean onCommand() {
     
-    RealmConnector.write(new CommandMessage(sender.getName(), "msg", args));
+    RealmServerConnector.write(new CommandMessage(sender.getName(), "msg", args));
     
     return true;
   }

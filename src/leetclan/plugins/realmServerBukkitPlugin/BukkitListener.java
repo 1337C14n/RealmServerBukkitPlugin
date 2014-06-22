@@ -6,6 +6,9 @@ package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import leetclan.plugins.realmServerBukkitPlugin.permissions.GetPermissionsTask;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,12 +27,13 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+
 import packets.ChatMessage;
 import packets.CommandMessage;
 import packets.PlayerLogin;
 import packets.PlayerProxyPacket;
 import packets.RequestServer;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 /**
  * 
@@ -64,17 +68,17 @@ public class BukkitListener implements Listener {
 
       CommandMessage newMessage = new CommandMessage(commandMessage.getSender(), commandMessage.getCommand(), playerName, time, message);
 
-      RealmConnector.write(newMessage);
+      RealmServerConnector.write(newMessage);
 
       PlayerMap.INSTANCE.waitingForReason.remove(name);
     } else {
-      if (RealmConnector.isConnected()) {
+      if (RealmServerConnector.isConnected()) {
         ChatMessage playerMessage = new ChatMessage(name, VaultWrapper.INSTANCE.getChat().getPlayerPrefix(Bukkit.getPlayer(name)), message);
 
         if (event.getPlayer().hasPermission("chat.mod")) {
           playerMessage.setPlayerIsMod(true);
         }
-        RealmConnector.write(playerMessage);
+        RealmServerConnector.write(playerMessage);
       } else {
         for (Player p : Bukkit.getServer().getOnlinePlayers()) {
           p.sendMessage(appendMessage(name, message));
@@ -83,35 +87,6 @@ public class BukkitListener implements Listener {
     }
     event.setCancelled(true);
   }
-
-  /*@EventHandler(priority = EventPriority.HIGHEST)
-  public void onPlayerPreLogin(AsyncPlayerPreLoginEvent event) {
-
-    String playerName = event.getName();
-
-    RealmConnector.write(new Kick(playerName, null));
-
-    final Object waitObj = new Object();
-
-    PlayerLoginMap.INSTANCE.playerSynchro.put(playerName, waitObj);
-
-    synchronized (waitObj) {
-      while (!PlayerLoginMap.INSTANCE.playerKick.containsKey(playerName)) {
-        try {
-          waitObj.wait();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-    if (PlayerLoginMap.INSTANCE.playerKick.containsKey(playerName)) {
-      if (PlayerLoginMap.INSTANCE.playerKick.get(playerName).getMessage() != null) {
-        event.disallow(Result.KICK_BANNED, (PlayerLoginMap.INSTANCE.playerKick.get(playerName).getMessage()));
-      }
-    }
-    PlayerLoginMap.INSTANCE.playerKick.remove(playerName);
-    PlayerLoginMap.INSTANCE.playerSynchro.remove(playerName);
-  }*/
 
   @EventHandler(priority = EventPriority.NORMAL)
   public void onPlayerJoin(PlayerJoinEvent event) {
@@ -163,7 +138,7 @@ public class BukkitListener implements Listener {
 
     PlayerLogin player = new PlayerLogin(name, false);
 
-    RealmConnector.write(player);
+    RealmServerConnector.write(player);
   }
 
   @EventHandler(priority = EventPriority.NORMAL)
@@ -173,7 +148,7 @@ public class BukkitListener implements Listener {
 
     PlayerLogin player = new PlayerLogin(name, false);
 
-    RealmConnector.write(player);
+    RealmServerConnector.write(player);
   }
 
   @EventHandler
@@ -213,43 +188,43 @@ public class BukkitListener implements Listener {
           player.closeInventory();
 
           PlayerProxyPacket message = new PlayerProxyPacket(player.getName());
-          RealmConnector.write(message);
+          RealmServerConnector.write(message);
 
           RequestServer request = new RequestServer(player.getName(), "creative");
-          RealmConnector.write(request);
+          RealmServerConnector.write(request);
         } else if (clicked.getType() == Material.DIAMOND_SWORD) {
           event.setCancelled(true);
           player.closeInventory();
 
           CommandMessage message = new CommandMessage(player.getName(), "join", "sg");
-          RealmConnector.write(message);
+          RealmServerConnector.write(message);
         } else if (clicked.getType() == Material.DIAMOND_PICKAXE) {
           event.setCancelled(true);
           player.closeInventory();
 
           PlayerProxyPacket message = new PlayerProxyPacket(player.getName());
-          RealmConnector.write(message);
+          RealmServerConnector.write(message);
 
           RequestServer request = new RequestServer(player.getName(), "survival");
-          RealmConnector.write(request);
+          RealmServerConnector.write(request);
         } else if (clicked.getType() == Material.DIAMOND_ORE) {
           event.setCancelled(true);
           player.closeInventory();
 
           PlayerProxyPacket message = new PlayerProxyPacket(player.getName());
-          RealmConnector.write(message);
+          RealmServerConnector.write(message);
 
           RequestServer request = new RequestServer(player.getName(), "SkyGrid");
-          RealmConnector.write(request);
+          RealmServerConnector.write(request);
         } else if (clicked.getType() == Material.FIREBALL) {
           event.setCancelled(true);
           player.closeInventory();
 
           PlayerProxyPacket message = new PlayerProxyPacket(player.getName());
-          RealmConnector.write(message);
+          RealmServerConnector.write(message);
 
           RequestServer request = new RequestServer(player.getName(), "Factions");
-          RealmConnector.write(request);
+          RealmServerConnector.write(request);
         }
       }
     }

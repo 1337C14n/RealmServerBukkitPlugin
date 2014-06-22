@@ -4,7 +4,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import packets.PlayerLogin;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
  
 public class LoginTask extends BukkitRunnable {
  
@@ -20,7 +20,7 @@ public class LoginTask extends BukkitRunnable {
       if(name != null){     
         PlayerLogin player = new PlayerLogin(name, true);
         
-        RealmConnector.write(player);
+        RealmServerConnector.write(player);
       } else {
         System.out.println("Player Logged out before we could log them in");
       }

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 
 import packets.PlayerProxyPacket;
 import packets.RequestServer;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 /**
  * The /hub command sends a player back to the hub
@@ -33,10 +33,10 @@ public class HubCommand extends LeetCommand{
     
     if(!isMaster){
       PlayerProxyPacket message = new PlayerProxyPacket(sender.getName());  
-      RealmConnector.write(message);
+      RealmServerConnector.write(message);
       
       RequestServer request = new RequestServer(sender.getName(), "hub");
-      RealmConnector.write(request);
+      RealmServerConnector.write(request);
     }
     
     return false;

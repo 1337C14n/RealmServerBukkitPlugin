@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import packets.CommandMessage;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 /**
  * Handles all /ch commands
@@ -44,7 +44,7 @@ public class ChannelCommand extends LeetCommand{
     switch(firstArg.toUpperCase()){
     
       case "LIST": //Commands lists all channels to the player 
-        RealmConnector.write(new CommandMessage(sender.getName(), "ch", "list"));
+        RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "list"));
         break;
         
       case "CREATE": //Create a new Channel
@@ -53,7 +53,7 @@ public class ChannelCommand extends LeetCommand{
           return true;
           
         } else if(args.length == 2){ // /ch create <channel>       
-          RealmConnector.write(new CommandMessage(sender.getName(), "ch", "create", args[1]));
+          RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "create", args[1]));
           
         } else { // /ch create <channel> <password>
           
@@ -71,7 +71,7 @@ public class ChannelCommand extends LeetCommand{
             return true;
           }
           
-          RealmConnector.write(new CommandMessage(sender.getName(), "ch", "create", channelName, password));
+          RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "create", channelName, password));
         }
         break;
         
@@ -82,27 +82,27 @@ public class ChannelCommand extends LeetCommand{
         }
         
         String channelName = args[1];     
-        RealmConnector.write(new CommandMessage(sender.getName(), "ch", "delete", channelName));
+        RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "delete", channelName));
         break;
         
       case "ACTIVE":
-        RealmConnector.write(new CommandMessage(sender.getName(), "ch", "active"));
+        RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "active"));
         break;
         
       case "LEAVE":
         if(args.length > 1){
-          RealmConnector.write(new CommandMessage(sender.getName(), "ch", "leave", args[1]));
+          RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "leave", args[1]));
           return true;
         }
         
-        RealmConnector.write(new CommandMessage(sender.getName(), "ch", "leave"));
+        RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "leave"));
         break;
       
       case "JOIN":
         if(args.length == 3) { // /ch join <channel> <password>
-          RealmConnector.write(new CommandMessage(sender.getName(), "ch", "join", args[1], args[2]));
+          RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "join", args[1], args[2]));
         } else if(args.length == 2){
-          RealmConnector.write(new CommandMessage(sender.getName(), "ch", "join", args[1]));
+          RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", "join", args[1]));
         } else {
           p.sendMessage("&7[&4*&7] &7/ch join <channel>");
           p.sendMessage("&7[&4*&7] &7/ch join <channel> <password>");
@@ -116,7 +116,7 @@ public class ChannelCommand extends LeetCommand{
         break;
         
       default:
-        RealmConnector.write(new CommandMessage(sender.getName(), "ch", args[0]));  
+        RealmServerConnector.write(new CommandMessage(sender.getName(), "ch", args[0]));  
         break;
     }
 

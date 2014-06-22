@@ -5,7 +5,7 @@ package leetclan.plugins.realmServerBukkitPlugin;
 
 import java.util.logging.Logger;
 
-import leetclan.plugins.realmServerBukkitPlugin.commands.realmServerBukkitCommandExecutor;
+import leetclan.plugins.realmServerBukkitPlugin.commands.RealmServerBukkitCommandExecutor;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,7 +32,7 @@ public class RealmServerBukkitPlugin extends JavaPlugin {
 
     new BukkitListener(this);
 
-    realmServerBukkitCommandExecutor myExecutor = new realmServerBukkitCommandExecutor(this);
+    RealmServerBukkitCommandExecutor myExecutor = new RealmServerBukkitCommandExecutor(this);
     
     getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 

@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import packets.CommandMessage;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
 public class PermCommand extends LeetCommand{
 
@@ -26,7 +26,7 @@ public class PermCommand extends LeetCommand{
       return true;
     }
     
-    RealmConnector.write(new CommandMessage(sender.getName(), "perm", args));
+    RealmServerConnector.write(new CommandMessage(sender.getName(), "perm", args));
 
     return false;
   }

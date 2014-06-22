@@ -1,4 +1,4 @@
-package leetclan.plugins.realmServerBukkitPlugin;
+package leetclan.plugins.realmServerBukkitPlugin.permissions;
 
 import java.util.List;
 

@@ -19,7 +19,7 @@ import org.bukkit.command.CommandSender;
  * 
  * @author x4n4th
  */
-public class realmServerBukkitCommandExecutor implements CommandExecutor {
+public class RealmServerBukkitCommandExecutor implements CommandExecutor {
   static final Logger log = Logger.getLogger("Minecraft");
   RealmServerBukkitPlugin plugin;
   
@@ -42,7 +42,7 @@ public class realmServerBukkitCommandExecutor implements CommandExecutor {
     }
   };
 
-  public realmServerBukkitCommandExecutor(RealmServerBukkitPlugin instance) {
+  public RealmServerBukkitCommandExecutor(RealmServerBukkitPlugin instance) {
     plugin = instance;
   }
 

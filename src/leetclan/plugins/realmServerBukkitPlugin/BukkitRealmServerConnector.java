@@ -5,6 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import leetclan.plugins.realmServerBukkitPlugin.permissions.GetPermissionsTask;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,14 +20,13 @@ import packets.ClientLogin;
 import packets.Kick;
 import packets.Packet;
 import packets.PermissionChange;
-import packets.Permissions;
 import packets.PlayerList;
 import packets.PlayerMessage;
 import packets.PlayerProxyPacket;
 import packets.RedirectPacket;
-import realmConnection.RealmConnector;
+import realmConnection.RealmServerConnector;
 
-public class BukkitRealmServerConnector extends RealmConnector{
+public class BukkitRealmServerConnector extends RealmServerConnector{
   RealmServerBukkitPlugin plugin;
   
   public BukkitRealmServerConnector(String address, int port, RealmServerBukkitPlugin plugin) {
@@ -42,13 +43,7 @@ public class BukkitRealmServerConnector extends RealmConnector{
         System.out.println("Recieved: " + packet);
       } else if (packet instanceof ChannelMessage){
         ChannelMessage messagePacket = (ChannelMessage) packet;
-        
-        /*System.out.println("\nChannel Name: " + messagePacket.getChannelName());
-        System.out.println("Message: " + messagePacket.getMessage());
-        System.out.println("Sender: " + messagePacket.getSender());
-        System.out.println("Prefix: " + messagePacket.getPlayerPrefix());
-        System.out.println("Recipients: " + messagePacket.getRecipients() + "\n");*/
-        
+
         for(String player : messagePacket.getRecipients()){
           if(Bukkit.getPlayer(player) != null){
             if(messagePacket.getChannelName().contains("_private_")){         
@@ -117,32 +112,6 @@ public class BukkitRealmServerConnector extends RealmConnector{
         for(Player player : Bukkit.getOnlinePlayers()) {
           player.sendMessage(((Broadcast) packet).getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"));
         }
-      } else if (packet instanceof ClientLogin){
-        
-        /*On login to the master server will send a client login packet with the type type of server.
-        if(((ClientLogin) packet).getType() == null){
-          
-          boolean isMaster = false;
-          for(World world : Bukkit.getWorlds()){
-            if(world.getName().equalsIgnoreCase("hub")){
-              isMaster = true;
-            }
-          }
-          
-          if(isMaster){
-            write(new ClientLogin("master", "Master Hub"));
-            setType("master");
-          } else if(Game.getGameType() != null){
-            write(new ClientLogin(Game.getGameType(), Game.getName()));
-            setType(Game.getGameType());
-          } else {
-            write(new ClientLogin("node", "Other"));
-            setType("node");
-          }
-        }*/
-        
-      } else if (packet instanceof Permissions){
-
       } else if (packet instanceof RedirectPacket){
 
         PlayerProxyPacket message = new PlayerProxyPacket(((RedirectPacket) packet).getPlayer());  
