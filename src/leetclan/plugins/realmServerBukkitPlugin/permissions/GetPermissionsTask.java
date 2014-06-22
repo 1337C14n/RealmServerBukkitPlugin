@@ -26,7 +26,6 @@ public class GetPermissionsTask implements Runnable{
   @Override
   public void run() {
     JSONArray jsonData = getPermissionData(playerName, Game.getName());
-    System.out.println("getServer test: " + jsonData.toString());
     
     List<String> permissionNodes = getPermNodes(jsonData);
   
