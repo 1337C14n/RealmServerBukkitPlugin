@@ -35,10 +35,10 @@ import realmConnection.RealmConnector;
  * 
  * @author x4n4th
  */
-public class ControllerListener implements Listener {
-  Controller plugin;
+public class BukkitListener implements Listener {
+  RealmServerBukkitPlugin plugin;
 
-  public ControllerListener(Controller instance) {
+  public BukkitListener(RealmServerBukkitPlugin instance) {
     plugin = instance;
     plugin.getServer().getPluginManager().registerEvents(this, plugin);
   }

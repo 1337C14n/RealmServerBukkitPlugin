@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 import leetclan.plugins.Controller.PlayerMap;
 
 import org.bukkit.ChatColor;
@@ -10,14 +10,9 @@ import org.bukkit.entity.Player;
 
 import packets.CommandMessage;
 
-/**
- * Handles /mute command
- * @author x4n4th
- *
- */
-public class MuteCommand extends LeetCommand{
+public class BanCommand extends LeetCommand{
 
-  public MuteCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public BanCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 
@@ -28,11 +23,13 @@ public class MuteCommand extends LeetCommand{
     }
     Player p = (Player) sender;
     
-    if (args.length < 1) {
-      p.sendMessage(ChatColor.RED + "/mute <player>");
+    if (args.length == 0) {
+      p.sendMessage(ChatColor.RED + "/ban <player> <time>");
       return true;
-    } else if (args.length >= 2) {
-      // At this point I am going to assume that the args 2 through
+    }
+    if(args.length >= 2){
+      // /ban <player> <reason> <amountofTime>
+      // At this point I am going to assume that the args 1 through
       // args.length - 1 are time params
       int time = 0;
 
@@ -55,7 +52,7 @@ public class MuteCommand extends LeetCommand{
           }
         }
         if (type == null || tempNumber == "") {
-          p.sendMessage(ChatColor.RED + "/mute <player> 1d 1h 1m 1s");
+          p.sendMessage(ChatColor.RED + "/ban <player> 1d 1h 1m 1s");
           return true;
         }
 
@@ -74,17 +71,13 @@ public class MuteCommand extends LeetCommand{
           time += number;
         }
       }
-      String secondArg = args[0];
-      System.out.println("Player to be muted: " + secondArg);
-      CommandMessage message = new CommandMessage(sender.getName(), "mute", args[0], Integer.toString(time));
+      CommandMessage message = new CommandMessage(sender.getName(), "ban", args[0], Integer.toString(time));
       
       PlayerMap.INSTANCE.waitingForReason.put(sender.getName(), message);
       p.sendMessage(ChatColor.RED + "Please enter a reason:");
       return true;
     }
-    String secondArg = args[0];
-    System.out.println("Player to be muted: " + secondArg);
-    CommandMessage message = new CommandMessage(sender.getName(), "mute", args[0], null);
+    CommandMessage message = new CommandMessage(sender.getName(), "ban", args[0], null);
     
     PlayerMap.INSTANCE.waitingForReason.put(sender.getName(), message);
     p.sendMessage(ChatColor.RED + "Please enter a reason:");

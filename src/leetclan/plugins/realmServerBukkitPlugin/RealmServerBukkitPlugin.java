@@ -9,28 +9,28 @@ import leetclan.plugins.Controller.commands.ControllerCommandExecutor;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Controller extends JavaPlugin {
+public class RealmServerBukkitPlugin extends JavaPlugin {
   static final Logger log = Logger.getLogger("Minecraft");
   public boolean enabled = true;
   public boolean commandLogEnabled = false;
   
   @Override
   public void onDisable() {
-    Controller.log.info("[1337Clan Controller] Disabled");
+    RealmServerBukkitPlugin.log.info("[1337Clan Controller] Disabled");
   }
 
   @Override
   public void onEnable() {
 
-    Controller.log.info("[1337Clan Controller] Enabling");
+    RealmServerBukkitPlugin.log.info("[1337Clan Controller] Enabling");
     
-    ControllerRealmConnector connectionHandler = new ControllerRealmConnector("localhost", 2000, this);
+    BukkitRealmServerConnector connectionHandler = new BukkitRealmServerConnector("localhost", 2000, this);
     Thread connectionThread = new Thread(connectionHandler);
     connectionThread.start();
     
     VaultWrapper.INSTANCE.setupChat();
 
-    new ControllerListener(this);
+    new BukkitListener(this);
 
     ControllerCommandExecutor myExecutor = new ControllerCommandExecutor(this);
     
@@ -49,6 +49,6 @@ public class Controller extends JavaPlugin {
     getCommand("ignored").setExecutor(myExecutor);
     getCommand("perm").setExecutor(myExecutor);
     
-    Controller.log.info("[1337Clan Controller] Enabled");
+    RealmServerBukkitPlugin.log.info("[1337Clan Controller] Enabled");
   }
 }

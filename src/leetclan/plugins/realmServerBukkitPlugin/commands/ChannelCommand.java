@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -17,7 +17,7 @@ import realmConnection.RealmConnector;
  */
 public class ChannelCommand extends LeetCommand{
 
-  public ChannelCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public ChannelCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 

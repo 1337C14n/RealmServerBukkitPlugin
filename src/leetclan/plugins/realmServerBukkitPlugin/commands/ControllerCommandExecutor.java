@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,7 +21,7 @@ import org.bukkit.command.CommandSender;
  */
 public class ControllerCommandExecutor implements CommandExecutor {
   static final Logger log = Logger.getLogger("Minecraft");
-  Controller plugin;
+  RealmServerBukkitPlugin plugin;
   
   @SuppressWarnings("serial")
   public static final HashMap<String, Class<? extends LeetCommand>> commandTypes = new HashMap<String, Class<? extends LeetCommand>>() {
@@ -42,7 +42,7 @@ public class ControllerCommandExecutor implements CommandExecutor {
     }
   };
 
-  public ControllerCommandExecutor(Controller instance) {
+  public ControllerCommandExecutor(RealmServerBukkitPlugin instance) {
     plugin = instance;
   }
 
@@ -51,7 +51,7 @@ public class ControllerCommandExecutor implements CommandExecutor {
     String commandName = command.getName().toLowerCase();
     
     try {
-      classForType(commandName).getConstructor(Controller.class, CommandSender.class, Command.class , String.class , String[].class).newInstance(plugin, sender, command, label, args).onCommand();
+      classForType(commandName).getConstructor(RealmServerBukkitPlugin.class, CommandSender.class, Command.class , String.class , String[].class).newInstance(plugin, sender, command, label, args).onCommand();
     } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
       e.printStackTrace();
       log.warning("Controller recived an invalid command!");

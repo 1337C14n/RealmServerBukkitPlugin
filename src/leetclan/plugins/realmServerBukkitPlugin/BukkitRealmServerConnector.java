@@ -25,10 +25,10 @@ import packets.PlayerProxyPacket;
 import packets.RedirectPacket;
 import realmConnection.RealmConnector;
 
-public class ControllerRealmConnector extends RealmConnector{
-  Controller plugin;
+public class BukkitRealmServerConnector extends RealmConnector{
+  RealmServerBukkitPlugin plugin;
   
-  public ControllerRealmConnector(String address, int port, Controller plugin) {
+  public BukkitRealmServerConnector(String address, int port, RealmServerBukkitPlugin plugin) {
     super(address, port);
     this.plugin = plugin;
   }

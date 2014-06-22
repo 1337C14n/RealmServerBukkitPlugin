@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 import leetclan.plugins.Controller.PlayerMap;
 
 import org.bukkit.ChatColor;
@@ -12,7 +12,7 @@ import packets.CommandMessage;
 
 public class UnBanCommand extends LeetCommand{
 
-  public UnBanCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public UnBanCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 

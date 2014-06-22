@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
@@ -18,7 +18,7 @@ import realmConnection.RealmConnector;
  */
 public class HubCommand extends LeetCommand{
 
-  public HubCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public HubCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 

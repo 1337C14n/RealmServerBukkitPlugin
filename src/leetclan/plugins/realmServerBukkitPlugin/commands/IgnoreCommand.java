@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,7 +10,7 @@ import realmConnection.RealmConnector;
 
 public class IgnoreCommand extends LeetCommand{
 
-  public IgnoreCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public IgnoreCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 

@@ -1,7 +1,7 @@
 author: x4n4th
 database: false
 description: none
-main: Controller
+main: leetclan.plugins.Controller.Controller
 name: Controller
 loadbefore: [HungerGames, HubMiniGame, SurvivalMiniGame, SkyGridMiniGame]
 depend: [Vault, PermissionsEx]

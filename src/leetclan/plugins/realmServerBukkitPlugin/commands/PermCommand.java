@@ -1,6 +1,6 @@
 package leetclan.plugins.Controller.commands;
 
-import leetclan.plugins.Controller.Controller;
+import leetclan.plugins.Controller.RealmServerBukkitPlugin;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,7 +11,7 @@ import realmConnection.RealmConnector;
 
 public class PermCommand extends LeetCommand{
 
-  public PermCommand(Controller plugin, CommandSender sender, Command command, String label, String[] args) {
+  public PermCommand(RealmServerBukkitPlugin plugin, CommandSender sender, Command command, String label, String[] args) {
     super(plugin, sender, command, label, args);
   }
 
