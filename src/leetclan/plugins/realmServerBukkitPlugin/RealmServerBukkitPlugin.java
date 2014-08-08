@@ -24,6 +24,9 @@ public class RealmServerBukkitPlugin extends JavaPlugin {
 
     RealmServerBukkitPlugin.log.info("[1337Clan Controller] Enabling");
     
+    /*
+     * Initializes realm server connector which handles communication with the realm server 
+     */
     BukkitRealmServerConnector connectionHandler = new BukkitRealmServerConnector("localhost", 2000, this);
     Thread connectionThread = new Thread(connectionHandler);
     connectionThread.start();

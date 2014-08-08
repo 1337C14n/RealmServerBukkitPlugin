@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import leetclan.plugins.realmServerBukkitPlugin.permissions.GetPermissionsTask;
+import leetclan.plugins.realmServerBukkitPlugin.tasks.KickTask;
+import leetclan.plugins.realmServerBukkitPlugin.tasks.SendPlayerMessageTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -46,46 +48,16 @@ public class BukkitRealmServerConnector extends RealmServerConnector{
 
         for(String player : messagePacket.getRecipients()){
           if(Bukkit.getPlayer(player) != null){
-            if(messagePacket.getChannelName().contains("_private_")){         
-              //Private Message do not add channelName
-                       
-              ArrayList<String> playerNames = new ArrayList<String>();
-              for(Player bukkitPlayer : Bukkit.getOnlinePlayers()){
-                playerNames.add(bukkitPlayer.getName());
-              }
-              
-              if(player.equalsIgnoreCase(messagePacket.getSender())){
-                String to = "The Abyss";
-                for(String goingTo: messagePacket.getRecipients()){
-                  if(!goingTo.equalsIgnoreCase(player)){
-                    to = goingTo;
-                  }
-                }
-           
-                if(playerNames.contains(player)){
-                  Bukkit.getPlayer(player).sendMessage(ChatColor.GRAY + "To " + to +  ChatColor.GREEN + ": " + messagePacket.getMessage());
-                }
-              } else {
-                if(playerNames.contains(player)){
-                  Bukkit.getPlayer(player).sendMessage(ChatColor.GRAY + "From " + messagePacket.getSender() + ChatColor.GREEN + ": " + messagePacket.getMessage());
-                }
-              }
+            if(messagePacket.isSenderIsModerator()){
+              Bukkit.getPlayer(player).sendMessage(appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"), messagePacket.getChannelName(), messagePacket.isPrefixEnabled()));
             } else {
-              if(messagePacket.isSenderIsModerator()){
-                Bukkit.getPlayer(player).sendMessage(appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"), messagePacket.getChannelName(), messagePacket.isPrefixEnabled()));
-              } else {
-                Bukkit.getPlayer(player).sendMessage(appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage(), messagePacket.getChannelName(), messagePacket.isPrefixEnabled()));
-              }       
-            }
+              Bukkit.getPlayer(player).sendMessage(appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage(), messagePacket.getChannelName(), messagePacket.isPrefixEnabled()));
+            }                 
           }
         }
       } else if (packet instanceof PlayerMessage) {
         PlayerMessage messagePacket = (PlayerMessage) packet;
-        Player bukkitPlayer = Bukkit.getPlayer(messagePacket.getName());
-        
-        if(bukkitPlayer != null){
-          bukkitPlayer.sendMessage(messagePacket.getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"));
-        }
+        new SendPlayerMessageTask(messagePacket.getName(), messagePacket.getMessage()).runTaskLater(this.plugin, 0);
         
       } else if (packet instanceof PlayerList){
         if(((PlayerList) packet).getPlayers() == null){
