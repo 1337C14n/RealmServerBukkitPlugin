@@ -18,7 +18,7 @@ public class SendPlayerMessageTask extends BukkitRunnable {
       Player bukkitPlayer = Bukkit.getPlayer(playerName);
       
       if(bukkitPlayer != null){
-        bukkitPlayer.sendMessage(message.replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"));
+        bukkitPlayer.sendMessage(message);
       }
 
     }
