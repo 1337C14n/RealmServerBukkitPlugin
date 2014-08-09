@@ -57,7 +57,7 @@ public class BukkitRealmServerConnector extends RealmServerConnector{
         }
       } else if (packet instanceof PlayerMessage) {
         PlayerMessage messagePacket = (PlayerMessage) packet;
-        new SendPlayerMessageTask(messagePacket.getName(), messagePacket.getMessage()).runTaskLater(this.plugin, 0);
+        new SendPlayerMessageTask(messagePacket.getName(), messagePacket.getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1")).runTaskLater(this.plugin, 0);
         
       } else if (packet instanceof PlayerList){
         if(((PlayerList) packet).getPlayers() == null){
