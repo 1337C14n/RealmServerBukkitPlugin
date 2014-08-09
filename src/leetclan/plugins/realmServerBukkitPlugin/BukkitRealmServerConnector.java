@@ -82,7 +82,7 @@ public class BukkitRealmServerConnector extends RealmServerConnector{
         }
       } else if (packet instanceof Broadcast){
         for(Player player : Bukkit.getOnlinePlayers()) {
-          player.sendMessage(((Broadcast) packet).getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"));
+
           new SendPlayerMessageTask(player.getName(), ((Broadcast) packet).getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1")).runTaskLater(this.plugin, 0);
         }
       } else if (packet instanceof RedirectPacket){
