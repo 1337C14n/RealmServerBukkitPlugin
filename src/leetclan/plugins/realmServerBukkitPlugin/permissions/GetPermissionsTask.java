@@ -67,7 +67,7 @@ public class GetPermissionsTask implements Runnable{
    * @return JSON containing name of server and if the player is banned
    */
   private JSONArray getPermissionData(String player, String server){
-    String absoluteURI = "http://dev.1337clan.com/network/permission.php?name=" + player + "&server=" + server;
+    String absoluteURI = "http://1337clan.com/network/permission.php?name=" + player + "&server=" + server;
     System.out.println("Getting JSON");
     try {
       URLConnection connection = new URL(absoluteURI).openConnection();
