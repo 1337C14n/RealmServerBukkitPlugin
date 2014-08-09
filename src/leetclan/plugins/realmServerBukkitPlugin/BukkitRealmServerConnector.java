@@ -51,7 +51,7 @@ public class BukkitRealmServerConnector extends RealmServerConnector{
             if(messagePacket.isSenderIsModerator()){
               new SendPlayerMessageTask(player, appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage().replaceAll("&((?i)[0-9a-fk-or])", "\u00A7$1"), messagePacket.getChannelName(), messagePacket.isPrefixEnabled())).runTaskLater(this.plugin, 0);
             } else {
-              new SendPlayerMessageTask(player, appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage(), messagePacket.getChannelName(), messagePacket.isPrefixEnabled()));
+              new SendPlayerMessageTask(player, appendMessage(messagePacket.getPlayerPrefix(), messagePacket.getSender(), messagePacket.getMessage(), messagePacket.getChannelName(), messagePacket.isPrefixEnabled())).runTaskLater(this.plugin, 0);
             }                 
           }
         }
