@@ -4,6 +4,11 @@
  */
 package leetclan.plugins.realmServerBukkitPlugin;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +25,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
@@ -28,6 +34,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.json.JSONArray;
 
 import packets.ChatMessage;
 import packets.CommandMessage;
@@ -151,7 +158,53 @@ public class BukkitListener implements Listener {
 
     RealmServerConnector.write(player);
   }
-
+  
+  @EventHandler
+  public void onplayerPreLogin(AsyncPlayerPreLoginEvent e) {
+    String playerName = e.getName();
+    
+    JSONArray response = getRequest(playerName);
+    
+    if(this.isPlayerBanned(response) == true){
+      e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, "You were banned? Please go to 1337clan.com");
+    }
+  }
+  
+  /**
+   * Request the JSON payload need for a player to log in
+   * 
+   * @param player players name
+   * @return JSON containing name of server and if the player is banned
+   */
+  private JSONArray getRequest(String player){
+    String absoluteURI = "http://localhost/network/player.php?query=server&name=" + player;
+    System.out.println("Getting JSON");
+    try {
+      URLConnection connection = new URL(absoluteURI).openConnection();
+      connection.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
+      connection.connect();
+  
+      String line;
+      StringBuilder builder = new StringBuilder();
+      BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+      while((line = reader.readLine()) != null) {
+       builder.append(line);
+      }
+      System.out.println("Recieved JSON: " + builder.toString());
+      return new JSONArray(builder.toString());
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+  
+  private boolean isPlayerBanned(JSONArray json){
+    if(json != null){
+      return ((String) json.getJSONObject(0).get("banned")).equals("0") ? false : true;
+    }
+      
+    return false;
+  }
   @EventHandler
   public void onplayerinteract(PlayerInteractEvent e) {
     // We only want this to happen on the hub or we will be deleting peoples
